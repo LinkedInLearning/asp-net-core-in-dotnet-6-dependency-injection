@@ -19,7 +19,7 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         private Guid? Id { get; set; }
 
         /// <summary>
-        /// Constructs a product service.
+        /// Constructs a shopping cart service.
         /// </summary>
         /// <param name="storageService">A reference to the storage service from the IoC container.</param>
         public ShoppingCartService(IStorageService storageService)
