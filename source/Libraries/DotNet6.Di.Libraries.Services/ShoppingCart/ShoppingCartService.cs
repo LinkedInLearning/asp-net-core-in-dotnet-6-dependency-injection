@@ -1,4 +1,5 @@
-﻿using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
+﻿using DotNet6.Di.Libraries.Services.Product;
+using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
 using DotNet6.Di.Libraries.Services.Storage;
 
 namespace DotNet6.Di.Libraries.Services.ShoppingCart
@@ -17,6 +18,16 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         /// Unique Id of the shopping cart.
         /// </summary>
         private Guid? Id { get; set; }
+
+
+        /// <summary>
+        /// Constructs a shopping cart service.
+        /// </summary>
+        /// <param name="productService">A reference to the product service from the IoC container.</param>
+        public ShoppingCartService(IProductService productService)
+        {
+
+        }
 
         /// <summary>
         /// Constructs a shopping cart service.
