@@ -27,6 +27,22 @@ namespace DotNet6.Di.Libraries.Services.Storage
             ShoppingCarts = new List<ShoppingCartModel>();
 
             // Store a list of all the products for the online shop.
+            AddProduct(new ProductModel("BUB-APR", "A Gumball for Your Thoughts Apron", 24));
+            AddProduct(new ProductModel("BUB-BAS", "A Gumball for Your Thoughts Baseball Hat", 29));
+            AddProduct(new ProductModel("BUB-MUG", "A Gumball for Your Thoughts Mug", 16));
+            AddProduct(new ProductModel("BUB-TSH", "A Gumball for Your Thoughts T-shirt", 26));
+        }
+
+        /// <summary>
+        /// Adds a product to the storage.
+        /// </summary>
+        /// <param name="productModel">The <see cref="ProductModel"/> type to be added.</param>
+        private void AddProduct(ProductModel productModel)
+        {
+            if (!Products.Any(p => p.Sku == productModel.Sku))
+            {
+                Products.Add(productModel);
+            }
         }
 
         /// <summary>
