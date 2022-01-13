@@ -1,4 +1,5 @@
-﻿using DotNet6.Di.Libraries.Services.Product.Models;
+﻿using DotNet6.Di.Libraries.Services.Product;
+using DotNet6.Di.Libraries.Services.Product.Models;
 using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
 
 namespace DotNet6.Di.Libraries.Services.Storage
@@ -21,7 +22,8 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// <summary>
         ///  Constructs a storage service.
         /// </summary>
-        public StorageService()
+        /// <param name="productService">An instance of the product service from the IoC container.</param>
+        public StorageService(IProductService productService)
         {
             Products = new List<ProductModel>();
             ShoppingCarts = new List<ShoppingCartModel>();
