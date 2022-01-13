@@ -1,4 +1,5 @@
 ﻿using DotNet6.Di.Libraries.Services.Product.Models;
+using DotNet6.Di.Libraries.Services.ShoppingCart;
 using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
 
 namespace DotNet6.Di.Libraries.Services.Storage
@@ -21,7 +22,7 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// <summary>
         ///  Constructs a storage service.
         /// </summary>
-        public StorageService()
+        public StorageService(IShoppingCartService shoppingCartService)
         {
             Products = new List<ProductModel>();
             ShoppingCarts = new List<ShoppingCartModel>();

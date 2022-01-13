@@ -1,5 +1,6 @@
 ﻿using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
 using DotNet6.Di.Libraries.Services.Storage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DotNet6.Di.Libraries.Services.ShoppingCart
 {
@@ -21,10 +22,10 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         /// <summary>
         /// Constructs a shopping cart service.
         /// </summary>
-        /// <param name="storageService">A reference to the storage service from the IoC container.</param>
-        public ShoppingCartService(IStorageService storageService)
+        /// <param name="serviceProvider">A reference to the service provider from the IoC container.</param>
+        public ShoppingCartService(IServiceProvider serviceProvider)
         {
-            _storageService = storageService;
+            _storageService = serviceProvider.GetRequiredService<IStorageService>();
         }
 
         /// <summary>
