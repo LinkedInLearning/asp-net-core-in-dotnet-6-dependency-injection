@@ -49,8 +49,10 @@ namespace DotNet6.Di.Libraries.Services.Product
         {
             Task.Run(async() =>
             {
-                // Run the task in the background so the web app can start.
+                // Delay 5 seconds so we can start the app.
+                await Task.Delay(new TimeSpan(0, 0, 5));
 
+                // Run the task in the background so the web app can start.
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     // Create a new scope in the service provider.
