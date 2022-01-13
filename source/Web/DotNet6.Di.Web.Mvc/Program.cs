@@ -1,4 +1,13 @@
+using DotNet6.Di.Libraries.Services.Product;
+using DotNet6.Di.Libraries.Services.ShoppingCart;
+using DotNet6.Di.Libraries.Services.Storage;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add dependency injection.
+builder.Services.AddSingleton<IStorageService, StorageService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddTransient<IProductService, ProductService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
