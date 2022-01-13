@@ -51,5 +51,17 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
 
             return _storageService.ShoppingCarts.First(sc => sc.Id == Id.Value);
         }
+
+        /// <summary>
+        /// Has a product been added to the shopping cart?
+        /// </summary>
+        /// <param name="sku">The unique identifier of the product.</param>
+        /// <returns>A <see cref="bool"/> type which determines whether the product has been added to the shopping cart.</returns>
+        public bool HasProduct(string sku)
+        {
+            var shoppingCart = Get();
+
+            return shoppingCart.Items.Any(i => i.Product.Sku == sku);
+        }
     }
 }
