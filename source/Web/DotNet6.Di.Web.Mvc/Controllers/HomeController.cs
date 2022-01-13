@@ -2,7 +2,7 @@
 
 namespace DotNet6.Di.Web.Mvc.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public HomeController()
         {
