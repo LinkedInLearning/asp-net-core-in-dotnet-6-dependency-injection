@@ -1,4 +1,5 @@
-﻿using DotNet6.Di.Libraries.Services.Storage;
+﻿using DotNet6.Di.Libraries.Services.ShoppingCart;
+using DotNet6.Di.Libraries.Services.Storage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -18,6 +19,8 @@ namespace DotNet6.Di.Web.Mvc.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {            
             var storageService = filterContext.HttpContext.RequestServices.GetRequiredService<IStorageService>();
+            var shoppingCartService = filterContext.HttpContext.RequestServices.GetRequiredService<IShoppingCartService>();
+
             var shoppingCartIdCookie = Request.Cookies[SHOPPING_CART_ID_COOKIE_NAME];
             var hasShoppingCartCookie = Guid.TryParse(shoppingCartIdCookie, out var shoppingCartId);
 
@@ -36,6 +39,7 @@ namespace DotNet6.Di.Web.Mvc.Controllers
 
             // Add a new shopping cart record to the storage service.
             storageService.AddShoppingCart(shoppingCartId);
+            shoppingCartService.SetId(shoppingCartId);
 
             base.OnActionExecuting(filterContext);
         }
