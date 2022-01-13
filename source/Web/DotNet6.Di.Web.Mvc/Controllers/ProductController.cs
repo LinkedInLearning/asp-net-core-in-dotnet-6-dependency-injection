@@ -11,7 +11,7 @@ namespace DotNet6.Di.Web.Mvc.Controllers
         [HttpGet("{sku}")]
         public IActionResult Get(string sku)
         {
-
+            return View();
         }
     }
 }
