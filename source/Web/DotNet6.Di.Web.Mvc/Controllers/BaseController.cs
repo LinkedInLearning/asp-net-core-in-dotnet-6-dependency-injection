@@ -12,7 +12,7 @@ namespace DotNet6.Di.Web.Mvc.Controllers
         const string SHOPPING_CART_ID_COOKIE_NAME = "shoppingCartId";
 
         /// <summary>
-        /// Adds the shopping cart id as a cookie.
+        /// Always ensures we have a shopping cart record set in our storage service.
         /// </summary>
         /// <param name="filterContext">A <see cref="ActionExecutedContext"/> type.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
