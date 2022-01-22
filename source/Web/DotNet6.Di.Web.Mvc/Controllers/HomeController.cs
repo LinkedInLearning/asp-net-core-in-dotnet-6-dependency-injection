@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotNet6.Di.Libraries.Services.Product.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet6.Di.Web.Mvc.Controllers
 {
@@ -10,7 +11,7 @@ namespace DotNet6.Di.Web.Mvc.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new List<ProductModel>());
         }
     }
 }

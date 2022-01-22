@@ -13,5 +13,11 @@ namespace DotNet6.Di.Libraries.Services.Product
         /// <param name="sku">The unique sku reference.</param>
         /// <returns>A <see cref="ProductModel"/> type.</returns>
         ProductModel Get(string sku);
+
+        /// <summary>
+        /// Get all products.
+        /// </summary>
+        /// <returns>A list of <see cref="ProductModel"/> type.</returns>
+        public IList<ProductModel> GetAll();
     }
 }

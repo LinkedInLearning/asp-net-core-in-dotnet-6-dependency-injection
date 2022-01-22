@@ -31,5 +31,14 @@ namespace DotNet6.Di.Libraries.Services.Product
         {
             return _storageService.Products.FirstOrDefault(p => p.Sku == sku);
         }
+
+        /// <summary>
+        /// Get all products.
+        /// </summary>
+        /// <returns>A list of <see cref="ProductModel"/> type.</returns>
+        public IList<ProductModel> GetAll()
+        {
+            return _storageService.Products.ToList();
+        }
     }
 }
