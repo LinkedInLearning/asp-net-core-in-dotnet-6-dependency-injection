@@ -1,5 +1,4 @@
 using DotNet6.Di.Libraries.Services.Product;
-using DotNet6.Di.Libraries.Services.ShoppingCart;
 using DotNet6.Di.Libraries.Services.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
