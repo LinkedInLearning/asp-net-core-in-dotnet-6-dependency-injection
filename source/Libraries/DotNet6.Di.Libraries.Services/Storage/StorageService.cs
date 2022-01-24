@@ -22,7 +22,7 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// <summary>
         ///  Constructs a storage service.
         /// </summary>
-        public StorageService(IShoppingCartService shoppingCartService)
+        public StorageService()
         {
             Products = new List<ProductModel>();
             ShoppingCarts = new List<ShoppingCartModel>();
