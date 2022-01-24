@@ -6,7 +6,7 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
     /// <summary>
     /// Used for shopping cart methods.
     /// </summary>
-    public class ShoppingCartService : IShoppingCartService, IDisposable
+    public class ShoppingCartService : IShoppingCartService
     {
         /// <summary>
         /// A private reference to the storage service from the IoC container.
@@ -62,15 +62,6 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
             var shoppingCart = Get();
 
             return shoppingCart.Items.Any(i => i.Product.Sku == sku);
-        }
-
-        /// <summary>
-        /// Called when the shopping cart service is disposed of.
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        void IDisposable.Dispose()
-        {
-            // Dispose objects in here.
         }
     }
 }

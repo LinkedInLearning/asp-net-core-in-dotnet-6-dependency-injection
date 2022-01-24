@@ -6,7 +6,7 @@ namespace DotNet6.Di.Libraries.Services.Product
     /// <summary>
     /// Used for product methods.
     /// </summary>
-    public class ProductService : IProductService
+    public class ProductService : IProductService, IDisposable
     {
         /// <summary>
         /// A private reference to the storage service from the IoC container.
@@ -30,6 +30,15 @@ namespace DotNet6.Di.Libraries.Services.Product
         public ProductModel Get(string sku)
         {
             return _storageService.Products.FirstOrDefault(p => p.Sku == sku);
+        }
+
+        /// <summary>
+        /// Called when the shopping cart service is disposed of.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        void IDisposable.Dispose()
+        {
+            // Dispose objects in here.
         }
     }
 }
