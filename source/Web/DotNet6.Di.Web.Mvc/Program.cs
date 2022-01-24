@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IStorageService, StorageService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddHostedService<ProductBackgroundService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
