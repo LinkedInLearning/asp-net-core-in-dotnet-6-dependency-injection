@@ -10,7 +10,7 @@ namespace DotNet6.Di.Libraries.Services.Product
     /// <summary>
     /// Used for product background service.
     /// </summary>
-    public class ProductBackgroundService : IHostedService
+    public class ProductBackgroundService : BackgroundService
     {
         /// <summary>
         /// A private reference of the service provider that the IoC container gives us.
@@ -40,76 +40,55 @@ namespace DotNet6.Di.Libraries.Services.Product
             _logger = logger;
         }
 
-        /// <summary>
-        /// Kicks off a background task that updates the stock.
-        /// </summary>
-        /// <param name="cancellationToken">A <see cref="CancellationToken"/> type.</param>
-        /// <returns>A <see cref="Task"/> type.</returns>
-        public Task StartAsync(CancellationToken cancellationToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            Task.Run(async() =>
+            // Delay 5 seconds so we can start the app.
+            await Task.Delay(new TimeSpan(0, 0, 5));
+
+            // Run the task in the background so the web app can start.
+            while (!cancellationToken.IsCancellationRequested)
             {
-                // Delay 5 seconds so we can start the app.
-                await Task.Delay(new TimeSpan(0, 0, 5));
-
-                // Run the task in the background so the web app can start.
-                while (!cancellationToken.IsCancellationRequested)
+                // Create a new scope in the service provider.
+                using (var scope = _serviceProvider.CreateScope())
                 {
-                    // Create a new scope in the service provider.
-                    using (var scope = _serviceProvider.CreateScope())
+                    // Get the product service from the scope.
+                    var productService = scope.ServiceProvider.GetService<IProductService>();
+
+                    // New HTTP Client. Get the stock from the API call.
+                    var httpClient = new HttpClient();
+                    var httpResponse = await httpClient.GetAsync("https://localhost:8001/api/product/stock");
+
+                    if (httpResponse.IsSuccessStatusCode)
                     {
-                        // Get the product service from the scope.
-                        var productService = scope.ServiceProvider.GetService<IProductService>();
-                        
-                        // New HTTP Client. Get the stock from the API call.
-                        var httpClient = new HttpClient();
-                        var httpResponse = await httpClient.GetAsync("https://localhost:8001/api/product/stock");
+                        // Successful API response, so go ahead and update the stock.
+                        _logger.LogInformation("Product stocks received.");
 
-                        if (httpResponse.IsSuccessStatusCode)
+                        // Bind the stock to a list of ProductStockModel.
+                        var productStocks = JsonConvert.DeserializeObject<IList<ProductStockModel>>(await httpResponse.Content.ReadAsStringAsync());
+
+                        foreach (var productStock in productStocks)
                         {
-                            // Successful API response, so go ahead and update the stock.
-                            _logger.LogInformation("Product stocks received.");
+                            // Check we can find the product.
+                            var product = productService.Get(productStock.Sku);
 
-                            // Bind the stock to a list of ProductStockModel.
-                            var productStocks = JsonConvert.DeserializeObject<IList<ProductStockModel>>(await httpResponse.Content.ReadAsStringAsync());
-
-                            foreach (var productStock in productStocks)
+                            if (product != null)
                             {
-                                // Check we can find the product.
-                                var product = productService.Get(productStock.Sku);
-
-                                if (product != null)
-                                {
-                                    // Update the stock and log the information.
-                                    product.UpdateStock(productStock.Stock);
-                                    _logger.LogInformation("Product stock '{0}' updated to '{1}'.", productStock.Sku, productStock.Stock);
-                                }
+                                // Update the stock and log the information.
+                                product.UpdateStock(productStock.Stock);
+                                _logger.LogInformation("Product stock '{0}' updated to '{1}'.", productStock.Sku, productStock.Stock);
                             }
                         }
-                        else
-                        {
-                            // Invalid response from the API call.
-                            _logger.LogWarning("Not a valid response from the HTTP client. Unable to get stocks.");
-                        }
                     }
-
-                    // Makes the task sleep for one minute before restarting the task.
-                    await Task.Delay(new TimeSpan(0, 1, 0));
+                    else
+                    {
+                        // Invalid response from the API call.
+                        _logger.LogWarning("Not a valid response from the HTTP client. Unable to get stocks.");
+                    }
                 }
-            });
 
-            // Starts the web app.
-            return Task.CompletedTask;
-        }
-
-        /// <summary>
-        /// Runs when the hosted service stops.
-        /// </summary>
-        /// <param name="cancellationToken">A <see cref="CancellationToken"/> type.</param>
-        /// <returns>A <see cref="Task"/> type.</returns>
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
+                // Makes the task sleep for one minute before restarting the task.
+                await Task.Delay(new TimeSpan(0, 1, 0));
+            }
         }
     }
 }
