@@ -1,9 +1,36 @@
-﻿<html>
+﻿<html class="overflow-x:hidden" lang="en">
     <head>
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Shop - Binaryville</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+        <link rel="stylesheet" href="/dist/main.min.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
     </head>
     <body>
-        @RenderBody()
+        <header class="border-bottom-color:neutral-000000 border-bottom-style:solid border-bottom-width:1 @@mq-960--display:block display:none padding-vertical:8">
+            <div class="margin-horizontal:auto max-width:container padding-horizontal:32">
+                <div class="display:flex align-items:center justify-content:center position:relative">
+                    <a aria-label="Home" href="/" class="display:inline-block">
+                        <img alt="Binaryville logo" src="/images/logo.svg" class="size:logo-152x78">
+                        </a>
+                </div>
+           </div>
+        </header>
+        <main class="margin-horizontal:auto max-width:container padding-horizontal:32">
+            @RenderBody()
+        </main>
+        <footer class="@@mq-800--padding-vertical:64 background-color:blue-c5e6f9 color:blue-324f6b padding-horizontal:8 padding-vertical:32">
+            <div class="margin-horizontal:auto max-width:container padding-horizontal:32">
+                <p class="@@mq-800--font-size:14 @@mq-800--line-height:1_285 @@mq-800--margin-horizontal:64 @@mq-800--padding-horizontal:32 @@mq-800--text-align:center border-top-style:solid border-top-width:2 font-size:12 letter-spacing:0_33 line-height:1_5 padding-top:24">This is a fictitious company created by LinkedIn Corporation, or its affiliates, solely for the creation and development of educational training materials. Any resemblance to real products or services is purely coincidental. Information provided about the products or services is also fictitious and should not be construed as representative of actual products or services on the market in a similar product or service category.</p>
+            </div>
+        </footer>
         @await RenderSectionAsync("Scripts", required: false)
+        <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=Array.from"></script>
+        <script src="/dist/vendor.js"></script>
+        <script src="/dist/main.js"></script>
     </body>
 </html>
