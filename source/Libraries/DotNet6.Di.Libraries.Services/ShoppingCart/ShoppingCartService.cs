@@ -10,7 +10,7 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
     public class ShoppingCartService : IShoppingCartService, IDisposable
     {
         /// <summary>
-        /// A private reference to the storage service from the IoC container.
+        /// A private reference to the storage service from the DI container.
         /// </summary>
         private readonly IStorageService _storageService;
 
