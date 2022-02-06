@@ -22,7 +22,7 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// <summary>
         ///  Constructs a storage service.
         /// </summary>
-        /// <param name="productService">An instance of the product service from the IoC container.</param>
+        /// <param name="productService">An instance of the product service from the DI container.</param>
         public StorageService(IProductService productService)
         {
             Products = new List<ProductModel>();
