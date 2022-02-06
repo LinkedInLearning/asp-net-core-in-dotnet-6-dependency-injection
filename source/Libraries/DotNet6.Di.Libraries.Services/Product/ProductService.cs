@@ -9,14 +9,14 @@ namespace DotNet6.Di.Libraries.Services.Product
     public class ProductService : IProductService
     {
         /// <summary>
-        /// A private reference to the storage service from the IoC container.
+        /// A private reference to the storage service from the DI container.
         /// </summary>
         private readonly IStorageService _storageService;
 
         /// <summary>
         /// Constructs a product service.
         /// </summary>
-        /// <param name="storageService">A reference to the storage service from the IoC container.</param>
+        /// <param name="storageService">A reference to the storage service from the DI container.</param>
         public ProductService(IStorageService storageService)
         {
             _storageService = storageService;
