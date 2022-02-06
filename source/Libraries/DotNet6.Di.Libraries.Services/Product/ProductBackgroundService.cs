@@ -13,26 +13,26 @@ namespace DotNet6.Di.Libraries.Services.Product
     public class ProductBackgroundService : BackgroundService
     {
         /// <summary>
-        /// A private reference of the service provider that the IoC container gives us.
+        /// A private reference of the service provider that the DI container gives us.
         /// </summary>
         private readonly IServiceProvider _serviceProvider;
 
         /// <summary>
-        /// A private reference to the storage service from the IoC container.
+        /// A private reference to the storage service from the DI container.
         /// </summary>
         private readonly IStorageService _storageService;
 
         /// <summary>
-        /// A private reference to the logger from the IoC container.
+        /// A private reference to the logger from the DI container.
         /// </summary>
         private readonly ILogger _logger;
 
         /// <summary>
         /// Constructs a product background service.
         /// </summary>
-        /// <param name="serviceProvier">A reference of the service provider that the IoC container gives us.</param>
-        /// <param name="storageService">A reference to the storage service from the IoC container.</param>
-        /// <param name="logger">A reference to the logger from the IoC container.</param>
+        /// <param name="serviceProvier">A reference of the service provider that the DI container gives us.</param>
+        /// <param name="storageService">A reference to the storage service from the DI container.</param>
+        /// <param name="logger">A reference to the logger from the DI container.</param>
         public ProductBackgroundService(IServiceProvider serviceProvier, IStorageService storageService, ILogger<ProductBackgroundService> logger)
         {
             _serviceProvider = serviceProvier;
