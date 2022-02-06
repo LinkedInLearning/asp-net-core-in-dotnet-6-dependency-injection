@@ -1,0 +1,20 @@
+﻿main {
+    margin-bottom: 225px;
+}
+h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 36px;
+}
+p.main {
+    font-size: 24px;
+}
+footer {
+    height: 175px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display:block;
+    position: fixed;
+}
