@@ -44,15 +44,6 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         }
 
         /// <summary>
-        /// Gets the number of items added to the current shopping cart.
-        /// </summary>
-        /// <returns>The total number of items.</returns>
-        public int Count()
-        {
-            return Get().Items.Count();
-        }
-
-        /// <summary>
         /// Adds a product to the current shopping cart.
         /// </summary>
         /// <param name="product">An instance of the product</param>
@@ -62,6 +53,15 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
             Get().Items.Add(new ShoppingCartItemModel(product, quantity));
         }
 
+        /// <summary>
+        /// Gets the number of items added to the current shopping cart.
+        /// </summary>
+        /// <returns>The total number of items.</returns>
+        public int Count()
+        {
+            return Get().Items.Count();
+        }
+       
         /// <summary>
         /// Sets the unique id of the shopping cart and adds it to the storage.
         /// </summary>
