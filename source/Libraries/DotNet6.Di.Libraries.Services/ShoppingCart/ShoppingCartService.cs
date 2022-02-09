@@ -1,4 +1,5 @@
-﻿using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
+﻿using DotNet6.Di.Libraries.Services.Product.Models;
+using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
 using DotNet6.Di.Libraries.Services.Storage;
 
 namespace DotNet6.Di.Libraries.Services.ShoppingCart
@@ -6,7 +7,7 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
     /// <summary>
     /// Used for shopping cart methods.
     /// </summary>
-    public class ShoppingCartService : IShoppingCartService, IDisposable
+    public class ShoppingCartService : IShoppingCartService
     {
         /// <summary>
         /// A private reference to the storage service from the DI container.
@@ -28,17 +29,7 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         }
 
         /// <summary>
-        /// Sets the unique id of the shopping cart and adds it to the storage.
-        /// </summary>
-        /// <param name="id">Unique id of the shopping cart.</param>
-        public void SetId(Guid id)
-        {
-            Id = id;
-            _storageService.AddShoppingCart(id);
-        }
-
-        /// <summary>
-        /// Gets the shopping cart model.
+        /// Gets the current shopping cart.
         /// </summary>
         /// <returns>The shopping cart as a <see cref="ShoppingCartModel"/> type.</returns>
         /// <exception cref="Exception">Returns an exception if the shopping cart cannot be found.</exception>
@@ -50,6 +41,25 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
             }
 
             return _storageService.ShoppingCarts.First(sc => sc.Id == Id.Value);
+        }
+
+        /// <summary>
+        /// Adds a product to the current shopping cart.
+        /// </summary>
+        /// <param name="product">An instance of the product</param>
+        /// <param name="quantity">The quantity they wish to add.</param>
+        public void AddProduct(ProductModel product, int quantity)
+        {
+            Get().Items.Add(new ShoppingCartItemModel(product, quantity));
+        }
+
+        /// <summary>
+        /// Gets the number of items added to the current shopping cart.
+        /// </summary>
+        /// <returns>The total number of items.</returns>
+        public int Count()
+        {
+            return Get().Items.Count();
         }
 
         /// <summary>
@@ -65,12 +75,13 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         }
 
         /// <summary>
-        /// Called when the shopping cart service is disposed of.
+        /// Sets the unique id of the shopping cart and adds it to the storage.
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        void IDisposable.Dispose()
+        /// <param name="id">Unique id of the shopping cart.</param>
+        public void SetId(Guid id)
         {
-            // Dispose objects in here.
+            Id = id;
+            _storageService.AddShoppingCart(id);
         }
     }
 }
