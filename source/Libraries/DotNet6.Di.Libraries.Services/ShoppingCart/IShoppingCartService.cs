@@ -1,4 +1,5 @@
-﻿using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
+﻿using DotNet6.Di.Libraries.Services.Product.Models;
+using DotNet6.Di.Libraries.Services.ShoppingCart.Models;
 
 namespace DotNet6.Di.Libraries.Services.ShoppingCart
 {
@@ -8,16 +9,29 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
     public interface IShoppingCartService
     {
         /// <summary>
+        /// Gets the current shopping cart.
+        /// </summary>
+        /// <returns>The shopping cart as a <see cref="ShoppingCartModel"/> type.</returns>
+        /// <exception cref="Exception">Returns an exception if the shopping cart cannot be found.</exception>
+        ShoppingCartModel Get();
+
+        /// <summary>
+        /// Gets the number of items added to the current shopping cart.
+        /// </summary>
+        /// <returns>The total number of items.</returns>
+        int Count();
+
+        /// <summary>
+        /// Adds a product to the current shopping cart.
+        /// </summary>
+        /// <param name="product">An instance of the product</param>
+        /// <param name="quantity">The quantity they wish to add.</param>
+        void AddProduct(ProductModel product, int quantity);
+
+        /// <summary>
         /// Sets the unique id of the shopping cart and adds it to the storage.
         /// </summary>
         /// <param name="id">Unique id of the shopping cart.</param>
         void SetId(Guid id);
-
-        /// <summary>
-        /// Gets the shopping cart model.
-        /// </summary>
-        /// <returns>The shopping cart as a <see cref="ShoppingCartModel"/> type.</returns>
-        /// <exception cref="Exception">Returns an exception if the shopping cart cannot be found.</exception>
-        public ShoppingCartModel Get();
     }
 }
