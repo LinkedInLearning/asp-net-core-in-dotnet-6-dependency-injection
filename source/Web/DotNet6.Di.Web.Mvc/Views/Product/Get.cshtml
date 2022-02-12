@@ -11,7 +11,7 @@
             <div class="display:flex flex-direction:column flex-grow:0 flex-shrink:0 margin-bottom:32 padding-horizontal:16 width:100 @@mq-768--width:100">
                 <h1 class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24 @@mq-768--font-size:32 @@mq-768--line-height:1_125">@Model.Name (@Model.Sku)</h1>
                 <p class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24">$@Model.Price.ToString("0.00")</p>
-                <p class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24">@Model.Stock in stock.</p>
+                <p class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24">@Model.Stock in stock</p>
                     @if (hasProductBeenAddedToCart)
                     {
                         <p>Product has been added to the cart.</p>
