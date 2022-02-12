@@ -33,7 +33,8 @@ namespace DotNet6.Di.Libraries.Services.Product
         /// <param name="serviceProvier">A reference of the service provider that the DI container gives us.</param>
         /// <param name="storageService">A reference to the storage service from the DI container.</param>
         /// <param name="logger">A reference to the logger from the DI container.</param>
-        public ProductBackgroundService(IServiceProvider serviceProvier, IStorageService storageService, ILogger<ProductBackgroundService> logger)
+        public ProductBackgroundService(IServiceProvider serviceProvier, IStorageService storageService, 
+            ILogger<ProductBackgroundService> logger)
         {
             _serviceProvider = serviceProvier;
             _storageService = storageService;
@@ -56,7 +57,8 @@ namespace DotNet6.Di.Libraries.Services.Product
 
                     // New HTTP Client. Get the stock from the API call.
                     var httpClient = new HttpClient();
-                    var httpResponse = await httpClient.GetAsync("https://localhost:8001/api/product/stock");
+                    var httpResponse = await httpClient
+                        .GetAsync("https://localhost:8001/api/product/stock");
 
                     if (httpResponse.IsSuccessStatusCode)
                     {
@@ -64,7 +66,9 @@ namespace DotNet6.Di.Libraries.Services.Product
                         _logger.LogInformation("Product stocks received.");
 
                         // Bind the stock to a list of ProductStockModel.
-                        var productStocks = JsonConvert.DeserializeObject<IList<ProductStockModel>>(await httpResponse.Content.ReadAsStringAsync());
+                        var productStocks = JsonConvert
+                            .DeserializeObject<IList<ProductStockModel>>
+                            (await httpResponse.Content.ReadAsStringAsync());
 
                         foreach (var productStock in productStocks)
                         {
