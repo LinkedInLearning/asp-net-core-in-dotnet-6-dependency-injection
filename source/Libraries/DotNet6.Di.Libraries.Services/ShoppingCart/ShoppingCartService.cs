@@ -24,11 +24,12 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         /// <summary>
         /// Constructs a shopping cart service.
         /// </summary>
-        /// <param name="productService">A reference to the product service from the DI container.</param>
-        public ShoppingCartService(IProductService productService)
+        /// <param name="storageService">A reference to the storage service from the DI container.</param>
+        public ShoppingCartService(IStorageService storageService)
         {
-
+            _storageService = storageService;
         }
+
         /// <returns>The shopping cart as a <see cref="ShoppingCartModel"/> type.</returns>
         /// <exception cref="Exception">Returns an exception if the shopping cart cannot be found.</exception>
         public ShoppingCartModel Get()
