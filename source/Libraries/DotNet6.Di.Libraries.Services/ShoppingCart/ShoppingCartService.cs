@@ -23,9 +23,10 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         /// Constructs a shopping cart service.
         /// </summary>
         /// <param name="storageService">A reference to the storage service from the DI container.</param>
-        public ShoppingCartService(IStorageService storageService)
+        public ShoppingCartService(IStorageService storageService, Guid id)
         {
             _storageService = storageService;
+            Id = id;
         }
 
         /// <summary>
