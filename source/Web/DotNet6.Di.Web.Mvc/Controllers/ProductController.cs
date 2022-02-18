@@ -31,7 +31,7 @@ namespace DotNet6.Di.Web.Mvc.Controllers
         }
 
         [HttpPost("{sku}")]
-        public IActionResult Post(string sku)
+        public IActionResult AddToShoppingCart(string sku)
         {
             var product = _productService.Get(sku);
 
