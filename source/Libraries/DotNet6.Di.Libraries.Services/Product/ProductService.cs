@@ -36,7 +36,7 @@ namespace DotNet6.Di.Libraries.Services.Product
         /// Called when the shopping cart service is disposed of.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void Dispose()
+        void IDisposable.Dispose()
         {
             // Dispose objects in here.
         }
