@@ -1,26 +1,31 @@
 ﻿@using DotNet6.Di.Libraries.Services.Product.Models;
 @using DotNet6.Di.Libraries.Services.ShoppingCart;
 @model ProductModel
-@if (Model != null) {
-    var shoppingCartService = ViewContext.HttpContext.RequestServices.GetRequiredService<IShoppingCartService>();
-    var hasProductBeenAddedToCart = shoppingCartService.HasProduct(Model.Sku);
+@{
+    var shoppingCartService = ViewContext.HttpContext.RequestServices
+                                        .GetRequiredService<IShoppingCartService>();
 
+    var hasProductBeenAddedToCart = shoppingCartService.HasProduct(Model.Sku);
+}
+@if (Model != null) {
 <div id="vue-product-detail" class="quenched">
     <div class="margin-bottom:32 @@mq-960--margin-top:32">
         <div class="display:flex flex-wrap:wrap flex-grow:1 margin-bottom:-32 margin-horizontal:-16">
             <div class="display:flex flex-direction:column flex-grow:0 flex-shrink:0 margin-bottom:32 padding-horizontal:16 width:100 @@mq-768--width:100">
-                <h1 class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24 @@mq-768--font-size:32 @@mq-768--line-height:1_125">@Model.Name (@Model.Sku)</h1>
+                <h1 class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24 @@mq-768--font-size:32 @@mq-768--line-height:1_125">@Model.Name</h1>
                 <p class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24">$@Model.Price.ToString("0.00")</p>
-                <p class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24">@Model.Stock in stock.</p>
-                    @if (hasProductBeenAddedToCart)
-                    {
-                        <p>Product has been added to the cart.</p>
-                    }
-                    else
-                    {
-                        <p>Product has not been added to the cart.</p>
-                    }
-                </div>
+                @if (hasProductBeenAddedToCart)
+                {
+                    <p>Product has been added to the cart.</p>
+                }
+                else
+                {
+                    <p>Product has not been added to the cart.</p>
+                    <form method="post" action="@Url.Action("AddToShoppingCart", new { sku = Model.Sku })">
+                        <button class="add-to-cart">Add to cart</button>                        
+                    </form>
+                }
+            </div>
         </div>
     </div>
 </div>
