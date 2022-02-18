@@ -2,7 +2,10 @@
 @using DotNet6.Di.Libraries.Services.ShoppingCart;
 @model ProductModel
 @{
-    var hasProductBeenAddedToCart = false;
+    var shoppingCartService = ViewContext.HttpContext.RequestServices
+                                        .GetRequiredService<IShoppingCartService>();
+
+    var hasProductBeenAddedToCart = shoppingCartService.HasProduct(Model.Sku);
 }
 @if (Model != null) {
 <div id="vue-product-detail" class="quenched">
