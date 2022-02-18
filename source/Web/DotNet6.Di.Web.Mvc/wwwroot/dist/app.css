@@ -18,3 +18,13 @@ footer {
     display:block;
     position: fixed;
 }
+.add-to-cart {
+    display: inline-block;
+    padding: 16px 24px;
+    background-color: #FF583D;
+    color: #222224;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 32px;
+}
