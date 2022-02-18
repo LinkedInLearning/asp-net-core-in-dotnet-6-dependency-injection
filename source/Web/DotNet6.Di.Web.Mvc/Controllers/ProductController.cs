@@ -7,15 +7,17 @@ namespace DotNet6.Di.Web.Mvc.Controllers
     [Route("product")]
     public class ProductController : Controller
     {
-        public ProductController()
-        {
+        private readonly IProductService _productService;
 
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
         }
 
         [HttpGet("{sku}")]
         public IActionResult Get(string sku)
         {
-            return View();
+            return View(_productService.Get(sku));
         }
     }
 }
