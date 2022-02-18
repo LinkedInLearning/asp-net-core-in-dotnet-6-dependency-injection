@@ -1,6 +1,9 @@
 ﻿@using DotNet6.Di.Libraries.Services.Product.Models;
 @using DotNet6.Di.Libraries.Services.ShoppingCart;
 @model ProductModel
+@{
+    var hasProductBeenAddedToCart = false;
+}
 @if (Model != null) {
 <div id="vue-product-detail" class="quenched">
     <div class="margin-bottom:32 @@mq-960--margin-top:32">
@@ -8,6 +11,17 @@
             <div class="display:flex flex-direction:column flex-grow:0 flex-shrink:0 margin-bottom:32 padding-horizontal:16 width:100 @@mq-768--width:100">
                 <h1 class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24 @@mq-768--font-size:32 @@mq-768--line-height:1_125">@Model.Name</h1>
                 <p class="font-weight:500 font-size:28 line-height:1_142 margin-bottom:24">$@Model.Price.ToString("0.00")</p>
+                @if (hasProductBeenAddedToCart)
+                {
+                    <p>Product has been added to the cart.</p>
+                }
+                else
+                {
+                    <p>Product has not been added to the cart.</p>
+                    <form method="post" action="@Url.Action("AddToShoppingCart", new { sku = Model.Sku })">
+                        <button class="display:inline-block padding-horizontal:24 padding-horizontal:24 &amp;:hocus--background-color:yellow-f0c808 background-color:orange-ff583d color:neutral-222224 font-size:18 font-weight:700 line-height:1 margin-bottom:32 padding-vertical:12 padding-vertical:16">Add to cart</button>                        
+                    </form>
+                }
             </div>
         </div>
     </div>
