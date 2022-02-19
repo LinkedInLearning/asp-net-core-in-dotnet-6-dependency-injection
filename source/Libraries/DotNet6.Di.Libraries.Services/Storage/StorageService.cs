@@ -20,13 +20,17 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// </summary>
         public IList<ShoppingCartModel> ShoppingCarts { get; private set; }
 
+        private readonly IServiceProvider _serviceProvider;
+
         /// <summary>
         ///  Constructs a storage service.
         /// </summary>
-        public StorageService()
+        public StorageService(IServiceProvider serviceProvider)
         {
             Products = new List<ProductModel>();
             ShoppingCarts = new List<ShoppingCartModel>();
+
+            _serviceProvider = serviceProvider;
 
             // Store a list of all the products for the online shop.
             AddProduct(new ProductModel("BUB-APR", "A Gumball for Your Thoughts Apron", 24, 4));
@@ -53,6 +57,12 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// <param name="id">The unique id of the shopping cart.</param>
         public void AddShoppingCart(Guid id)
         {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var shoppingCartService = scope.ServiceProvider
+                    .GetRequiredService<IShoppingCartService>();
+            }
+
             if (!ShoppingCarts.Any(sc => sc.Id == id))
             {
                 ShoppingCarts.Add(new ShoppingCartModel(id));
