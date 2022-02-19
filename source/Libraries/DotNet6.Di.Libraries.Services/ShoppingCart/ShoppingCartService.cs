@@ -11,6 +11,11 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
     public class ShoppingCartService : IShoppingCartService
     {
         /// <summary>
+        /// A private reference to the product service from the DI container.
+        /// </summary>
+        private readonly IProductService _productService;
+
+        /// <summary>
         /// A private reference to the storage service from the DI container.
         /// </summary>
         private readonly IStorageService _storageService;
@@ -20,6 +25,14 @@ namespace DotNet6.Di.Libraries.Services.ShoppingCart
         /// </summary>
         private Guid? Id { get; set; }
 
+        /// <summary>
+        /// Constructs a shopping cart service.
+        /// </summary>
+        /// <param name="productService">A reference to the product service from the DI container.</param>
+        public ShoppingCartService(IProductService productService)
+        {
+            _productService = productService;
+        }
 
         /// <summary>
         /// Constructs a shopping cart service.
