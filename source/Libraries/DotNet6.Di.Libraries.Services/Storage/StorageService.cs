@@ -20,6 +20,8 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// </summary>
         public IList<ShoppingCartModel> ShoppingCarts { get; private set; }
 
+        private readonly IServiceProvider _serviceProvider;
+
         /// <summary>
         ///  Constructs a storage service.
         /// </summary>
