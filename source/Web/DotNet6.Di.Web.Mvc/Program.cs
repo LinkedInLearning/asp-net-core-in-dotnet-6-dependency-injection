@@ -5,7 +5,7 @@ using DotNet6.Di.Libraries.Services.Storage;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add dependency injection.
-builder.Services.AddSingleton<IStorageService, StorageService>();
+//builder.Services.AddSingleton<IStorageService, StorageService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
