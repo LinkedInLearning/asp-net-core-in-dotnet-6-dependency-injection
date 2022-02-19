@@ -18,8 +18,10 @@ namespace DotNet6.Di.Web.Mvc.Controllers
         /// <param name="filterContext">A <see cref="ActionExecutedContext"/> type.</param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {            
-            var storageService = filterContext.HttpContext.RequestServices.GetRequiredService<IStorageService>();
-            var shoppingCartService = filterContext.HttpContext.RequestServices.GetRequiredService<IShoppingCartService>();
+            var storageService = filterContext.HttpContext.RequestServices
+                .GetRequiredService<IStorageService>();
+            var shoppingCartService = filterContext.HttpContext.RequestServices
+                .GetRequiredService<IShoppingCartService>();
 
             var shoppingCartIdCookie = Request.Cookies[SHOPPING_CART_ID_COOKIE_NAME];
             var hasShoppingCartCookie = Guid.TryParse(shoppingCartIdCookie, out var shoppingCartId);
