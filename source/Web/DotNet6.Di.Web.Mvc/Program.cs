@@ -6,7 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add dependency injection.
 builder.Services.AddSingleton<IStorageService, StorageService>();
-builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>(
+    (IServiceProvider serviceProvider) =>
+    {
+        return new ShoppingCartService(serviceProvider.GetRequiredService<IStorageService>());
+    }
+    );
 builder.Services.AddTransient<IProductService, ProductService>();
 
 // Add services to the container.
