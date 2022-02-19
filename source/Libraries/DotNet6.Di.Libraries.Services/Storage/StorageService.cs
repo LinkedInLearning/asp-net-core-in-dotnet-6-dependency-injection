@@ -26,10 +26,12 @@ namespace DotNet6.Di.Libraries.Services.Storage
         ///  Constructs a storage service.
         /// </summary>
         /// <param name="productService">An instance of the product service from the DI container.</param>
-        public StorageService(IProductService productService)
+        public StorageService(IServiceProvider serviceProvider)
         {
             Products = new List<ProductModel>();
             ShoppingCarts = new List<ShoppingCartModel>();
+
+            _serviceProvider = serviceProvider;
 
             // Store a list of all the products for the online shop.
             AddProduct(new ProductModel("BUB-APR", "A Gumball for Your Thoughts Apron", 24, 4));
@@ -56,6 +58,8 @@ namespace DotNet6.Di.Libraries.Services.Storage
         /// <param name="id">The unique id of the shopping cart.</param>
         public void AddShoppingCart(Guid id)
         {
+            var productService = _serviceProvider.GetRequiredService<IProductService>();
+
             if (!ShoppingCarts.Any(sc => sc.Id == id))
             {
                 ShoppingCarts.Add(new ShoppingCartModel(id));
