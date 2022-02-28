@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{93AB4403-CBD6-402F-8F2F-0A39328C1C3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet6.Di.Libraries.Services", "Libraries\DotNet6.Di.Libraries.Services\DotNet6.Di.Libraries.Services.csproj", "{ED9577E4-774F-4B14-A960-7914D93B43C3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6.Di.Web.Mvc", "Web\DotNet6.Di.Web.Mvc\DotNet6.Di.Web.Mvc.csproj", "{7653B1D6-6C0A-45DB-9B71-58BEF96EA71F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet6.Di.Libraries.Services", "Libraries\DotNet6.Di.Libraries.Services\DotNet6.Di.Libraries.Services.csproj", "{ED9577E4-774F-4B14-A960-7914D93B43C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
