@@ -1,7 +1,10 @@
 # ASP.NET Core in .NET 6: Dependency Injection
-This is the repository for the LinkedIn Learning course `ASP.NET Core in .NET 6: Dependency Injection`. The full course is available from [LinkedIn Learning][lil-course-url].
+This is the repository for the LinkedIn Learning course ASP.NET Core in .NET 6: Dependency Injection. The full course is available from [LinkedIn Learning][lil-course-url].
 
-_See the readme file in the main branch for updated instructions and information._
+![ASP.NET Core in .NET 6: Dependency Injection][lil-thumbnail-url] 
+
+If you’re a .NET developer or looking to enter the field, it’s essential to have a working understanding of dependency injection, a software development design pattern that allows for having objects that are not dependent on each other. In this course, .NET C# programmer David Grace provides an introduction to dependency injection, from configuration to implementation. He also talks through the advantages of DI and why you should use it. David shows how to implement dependency injection into a real-life example using an ASP.NET Core app, and details the use methods within it. He also looks at the common errors when using dependency injection and how to resolve them.
+
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
 
@@ -27,8 +30,15 @@ To resolve this issue:
 3. [Course-specific instructions]
 
 
-[0]: # (Replace these placeholder URLs with actual course URLs)
+### Instructor
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+David Grace 
+                            
 
+
+                            
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/david-grace).
+
+[lil-course-url]: https://www.linkedin.com/learning/asp-dot-net-core-in-dot-net-6-dependency-injection
+[lil-thumbnail-url]: https://cdn.lynda.com/course/2448262/2448262-1651080059899-16x9.jpg
